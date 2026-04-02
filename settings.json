@@ -99,16 +99,14 @@
   "skills": {
     "allowed": [
       "setup-project",
-      "prd-writing",
-      "functional-design",
-      "architecture-design",
-      "repository-structure",
-      "development-guidelines",
-      "glossary-creation",
-      "steering",
-      "issue-tracking",
+      "requirements-definition",
+      "basic-design",
+      "detailed-design",
+      "development-guide",
+      "issue-creation",
       "issue-resolution",
-      "pr-creation"
+      "pr-creation",
+      "doc-review"
     ]
   },
   "model": "opus"
