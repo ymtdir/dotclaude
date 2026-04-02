@@ -1,5 +1,5 @@
 ---
-description: GitHub Issueをエンドツーエンドで解決。Issue取得→ブランチ作成→ステアリング→原子的コミット→テスト。
+description: GitHub Issueをエンドツーエンドで解決。Issue取得→ブランチ作成→原子的コミット→テスト。
 ---
 
 # Issueの解決
