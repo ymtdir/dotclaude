@@ -41,7 +41,7 @@ git checkout -b issue-[番号]-[簡潔な説明]
 
 **重要: 各タスクごとに即座にコミット**
 
-コミット規約は `../rules/references/commit-conventions.md` に従う。
+コミット規約は `../rules/commit-conventions.md` に従う。
 
 ```bash
 # タスク1完了 → 即コミット

@@ -47,7 +47,7 @@ main (本番環境)
 
 ### コミットメッセージ規約
 
-詳細は `../../rules/references/commit-conventions.md` を参照。
+詳細は `../../rules/commit-conventions.md` を参照。
 
 ### プルリクエストのテンプレート
 
