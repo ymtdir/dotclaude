@@ -11,7 +11,7 @@
 - `/init-issues` - 初期Issue一括作成
 - `/create-issue` - Issue作成
 - `/create-pr` - Pull Request作成
-- `issue-tracking` スキル
+- `issue-creation` スキル
 - `pr-creation` スキル
 - その他、GitHub Issue/PRを作成するすべての操作
 
@@ -59,7 +59,7 @@
 
 ## 判定ルール
 
-### Issue作成時（issue-tracking）
+### Issue作成時（issue-creation）
 
 1. タイトルと本文のキーワードをチェック
 2. 複数のキーワードがマッチした場合、優先順位の高いラベルを採用
