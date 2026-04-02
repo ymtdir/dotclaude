@@ -1,6 +1,6 @@
 ---
 name: issue-resolution
-description: GitHub Issueをブランチ作成・ステアリング・原子的コミットで解決する。/resolve-issueコマンドから使用。
+description: GitHub Issueをブランチ作成・原子的コミットで解決する。/resolve-issueコマンドから使用。
 ---
 
 # Issue Resolution スキル
@@ -25,19 +25,10 @@ Issueの種類を判定：
 ### ステップ2: ブランチ作成
 
 ```bash
-# タイトルから簡潔な説明を抽出
 git checkout -b issue-[番号]-[簡潔な説明]
 ```
 
-### ステップ3: ステアリング作成
-
-`.steering/[日付]-issue-[番号]/`に3つのファイルを作成：
-
-- **requirements.md**: Issueの内容をそのまま保存
-- **design.md**: 解決アプローチを記載
-- **tasklist.md**: 詳細なタスクリストを作成
-
-### ステップ4: 作業単位での解決
+### ステップ3: 作業単位での解決
 
 **重要: 各タスクごとに即座にコミット**
 
@@ -53,7 +44,7 @@ git add [変更ファイル]
 git commit -m "test: [テスト内容]"
 ```
 
-### ステップ5: 品質チェック
+### ステップ4: 品質チェック
 
 全タスク完了後にテスト・lint・型チェック等を実行します。
 プロジェクトの技術スタックに応じたコマンドを使用してください。
