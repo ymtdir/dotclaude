@@ -1,10 +1,11 @@
 ---
-description: 初回プロジェクトセットアップ。6つのドキュメント（PRD・機能設計・アーキテクチャ・リポジトリ構造・開発ガイドライン・用語集）を対話的に作成。
+description: 初回プロジェクトセットアップ。4つのドキュメント（要件定義書・基本設計書・詳細設計書・開発ガイドライン）を対話的に作成。
 ---
 
 # 初回プロジェクトセットアップ
 
-このコマンドは、プロジェクトの6つの永続ドキュメントを対話的に作成します。
+このコマンドは、プロジェクトの4つの永続ドキュメントを対話的に作成します。
+各ステップでユーザーの承認を得てから次のドキュメントに進みます。
 
 ## 実行方法
 
@@ -22,12 +23,12 @@ claude
 ls docs/ideas/
 
 # ファイルが存在する場合
-✅ docs/ideas/initial-requirements.md が見つかりました
-   この内容を元にPRDを作成します
+✅ docs/ideas/xxx.md が見つかりました
+   この内容を元に要件定義書を作成します
 
 # ファイルが存在しない場合
 ⚠️  docs/ideas/ にファイルがありません
-   対話形式でPRDを作成します
+   対話形式で要件定義書を作成します
 ```
 
 ## 手順
@@ -35,12 +36,12 @@ ls docs/ideas/
 ### ステップ0: インプットの読み込み
 
 1. `docs/ideas/` 内のマークダウンファイルを全て読む
-2. 内容を理解し、PRD作成の参考にする
+2. 内容を理解し、要件定義書作成の参考にする
 
-### ステップ1: プロダクト要求定義書の作成
+### ステップ1: 要件定義書の作成
 
-1. **prd-writingスキル**をロード
-2. `docs/ideas/`の内容を元に`docs/product-requirements.md`を作成
+1. **requirements-definitionスキル**をロード
+2. `docs/ideas/`の内容を元に`docs/requirements.md`を作成
 3. 壁打ちで出たアイデアを具体化：
    - 詳細なユーザーストーリー
    - 受け入れ条件
@@ -48,41 +49,30 @@ ls docs/ideas/
    - 成功指標
 4. ユーザーに確認を求め、**承認されるまで待機**
 
-**以降のステップはプロダクト要求定義書の内容を元にするため、自動的に作成する**
+### ステップ2: 基本設計書の作成
 
-### ステップ2: 機能設計書の作成
+1. **basic-designスキル**をロード
+2. `docs/requirements.md`を読む
+3. スキルのテンプレートとガイドに従って`docs/basic-design.md`を作成
+4. ユーザーに確認を求め、**承認されるまで待機**
 
-1. **functional-designスキル**をロード
-1. `docs/product-requirements.md`を読む
-1. スキルのテンプレートとガイドに従って`docs/functional-design.md`を作成
+### ステップ3: 詳細設計書の作成
 
-### ステップ3: アーキテクチャ設計書の作成
-
-1. **architecture-designスキル**をロード
+1. **detailed-designスキル**をロード
 2. 既存のドキュメントを読む
-3. スキルのテンプレートとガイドに従って`docs/architecture.md`を作成
+3. スキルのテンプレートとガイドに従って`docs/detailed-design.md`を作成
+4. ユーザーに確認を求め、**承認されるまで待機**
 
-### ステップ4: リポジトリ構造定義書の作成
+### ステップ4: 開発ガイドラインの作成
 
-1. **repository-structureスキル**をロード
+1. **development-guideスキル**をロード
 2. 既存のドキュメントを読む
-3. スキルのテンプレートに従って`docs/repository-structure.md`を作成
-
-### ステップ5: 開発ガイドラインの作成
-
-1. **development-guidelinesスキル**をロード
-2. 既存のドキュメントを読む
-3. スキルのテンプレートに従って`docs/development-guidelines.md`を作成
-
-### ステップ6: 用語集の作成
-
-1. **glossary-creationスキル**をロード
-2. 既存のドキュメントを読む
-3. スキルのテンプレートに従って`docs/glossary.md`を作成
+3. スキルのテンプレートに従って`docs/development-guide.md`を作成
+4. ユーザーに確認を求め、**承認されるまで待機**
 
 ## 完了条件
 
-- 6つの永続ドキュメントが全て作成されていること
+- 4つの永続ドキュメントが全て作成されていること
 
 完了時のメッセージ:
 
@@ -90,25 +80,23 @@ ls docs/ideas/
 「初回セットアップが完了しました!
 
 作成したドキュメント:
-✅ docs/product-requirements.md
-✅ docs/functional-design.md
-✅ docs/architecture.md
-✅ docs/repository-structure.md
-✅ docs/development-guidelines.md
-✅ docs/glossary.md
+✅ docs/requirements.md
+✅ docs/basic-design.md
+✅ docs/detailed-design.md
+✅ docs/development-guide.md
 
 これで開発を開始する準備が整いました。
 
 今後の使い方:
 - ドキュメントの編集: 普通に会話で依頼してください
-  例: 「PRDに新機能を追加して」「architecture.mdを見直して」
+  例: 「要件定義書に新機能を追加して」「基本設計を見直して」
 
 - 新機能の追加（Issue駆動開発）:
   1. /create-issue [機能名] でIssueを作成
   2. /resolve-issue [Issue番号] で実装
   例: /create-issue ユーザー認証機能の追加
 
-- ドキュメントレビュー: /review-docs [パス] を実行してください
-  例: /review-docs docs/product-requirements.md
+- ドキュメントレビュー: /review-doc [パス] を実行してください
+  例: /review-doc docs/requirements.md
 」
 ```
