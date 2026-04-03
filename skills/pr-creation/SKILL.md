@@ -58,9 +58,9 @@ gh pr edit [PR番号] --add-label "[ラベル]"
 Agent toolでpr-reviewerサブエージェントを起動：
 
 - subagent_type: `pr-reviewer`
-- prompt: 「Pull Request #[PR番号]をレビューしてください。」
+- prompt: 「Pull Request #[PR番号]をレビューしてください。ラベルは [ラベル名] です。」
 
-エージェントがインラインコメントと総評をGitHubに投稿します。
+ラベルを渡すことで、エージェントがラベルに応じた専門スペシャリストの観点でレビューを実施します。
 
 ## PRタイトルの生成
 
