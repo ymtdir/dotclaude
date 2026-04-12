@@ -12,6 +12,7 @@
       "Bash(gh api:*)",
       "WebFetch(*)",
       "WebSearch(*)",
+      "Read(*)",
       "Edit(*)",
       "Write(*)"
     ],
@@ -99,5 +100,5 @@
       "doc-review"
     ]
   },
-  "model": "opus"
+  "model": "sonnet"
 }
