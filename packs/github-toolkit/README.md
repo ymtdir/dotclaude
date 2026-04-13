@@ -1,0 +1,34 @@
+# github-toolkit
+
+GitHub の PR / Issue 周りを Claude Code 上で完結させるためのツールキット。Issue 起票から原子的コミット・PR 作成・PR レビューまで一連のワークフローをカバーする。
+
+## 含まれるもの
+
+| 種別          | 名前                                                                | 役割                                         |
+| ------------- | ------------------------------------------------------------------- | -------------------------------------------- |
+| command       | `/create-issue`                                                     | 課題を Issue として起票                      |
+| command       | `/init-issues`                                                      | 初期開発 Issue 群を一括作成                  |
+| command       | `/resolve-issue`                                                    | Issue をブランチ作成 + 原子的コミットで解決  |
+| command       | `/create-pr`                                                        | 現ブランチから PR を作成（自動レビュー連携） |
+| skill         | `issue-creation` / `issue-resolution` / `pr-creation` / `pr-review` | 各コマンドの実体                             |
+| agent         | `pr-reviewer`                                                       | PR レビューの専門エージェント                |
+| rule          | `label-definitions.md`                                              | 標準 5 ラベル定義                            |
+| rule (shared) | `commit-conventions.md`                                             | コミット規約                                 |
+
+## インストール
+
+対象リポジトリのルートで以下を実行：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | bash -s -- add github-toolkit
+```
+
+`<repo>/.claude/` 配下に展開され、Claude Code がそのまま認識する。
+
+## アンインストール
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | bash -s -- remove github-toolkit
+```
+
+`.claude/.dotclaude-manifest.json` を参照し、この pack 由来のファイルだけを削除する。共有ファイル（`commit-conventions.md` 等）は他 pack が参照中なら残る。

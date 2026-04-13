@@ -1,0 +1,19 @@
+{
+  "name": "github-toolkit",
+  "description": "PR/Issue 作成・解決・レビューと関連ルール一式",
+  "files": [
+    "agents/pr-reviewer.md",
+    "commands/create-pr.md",
+    "commands/create-issue.md",
+    "commands/init-issues.md",
+    "commands/resolve-issue.md",
+    "skills/pr-creation/",
+    "skills/pr-review/",
+    "skills/issue-creation/",
+    "skills/issue-resolution/",
+    "rules/label-definitions.md"
+  ],
+  "shared": [
+    "rules/commit-conventions.md"
+  ]
+}
