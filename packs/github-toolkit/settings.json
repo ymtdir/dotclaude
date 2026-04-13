@@ -1,6 +1,12 @@
 {
   "permissions": {
-    "allow": ["Bash(gh api:*)"],
+    "allow": [
+      "Bash(gh:*)",
+      "Skill(issue-creation)",
+      "Skill(issue-resolution)",
+      "Skill(pr-creation)",
+      "Skill(pr-review)"
+    ],
     "ask": ["Bash(git push:*)"]
   },
   "sandbox": {
