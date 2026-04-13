@@ -1,0 +1,14 @@
+{
+  "packs": [
+    {
+      "name": "github-toolkit",
+      "description": "PR/Issue 作成・解決・レビューと関連ルール一式",
+      "path": "packs/github-toolkit"
+    },
+    {
+      "name": "docs-toolkit",
+      "description": "要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式",
+      "path": "packs/docs-toolkit"
+    }
+  ]
+}
