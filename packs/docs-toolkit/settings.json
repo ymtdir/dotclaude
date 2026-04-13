@@ -1,0 +1,11 @@
+{
+  "skills": {
+    "allowed": [
+      "requirements-definition",
+      "basic-design",
+      "detailed-design",
+      "development-guide",
+      "doc-review"
+    ]
+  }
+}
