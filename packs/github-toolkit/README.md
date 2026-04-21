@@ -13,7 +13,7 @@ GitHub の PR / Issue 周りを Claude Code 上で完結させるためのツー
 | skill         | `issue-creation` / `issue-resolution` / `pr-creation` / `pr-review` | 各コマンドの実体                             |
 | agent         | `pr-reviewer`                                                       | PR レビューの専門エージェント                |
 | rule          | `label-definitions.md`                                              | 標準 5 ラベル定義                            |
-| rule (shared) | `commit-conventions.md`                                             | コミット規約                                 |
+| rule          | `commit-conventions.md`                                             | コミット規約                                 |
 
 ## インストール
 
@@ -31,4 +31,4 @@ curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | 
 curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | bash -s -- remove github-toolkit
 ```
 
-`.claude/.dotclaude-manifest.json` を参照し、この pack 由来のファイルだけを削除する。共有ファイル（`commit-conventions.md` 等）は他 pack が参照中なら残る。
+`.claude/.dotclaude-manifest.json` を参照し、この pack 由来のファイルだけを削除する。他 pack が参照中のファイル（`commit-conventions.md` 等）は残る。

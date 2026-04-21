@@ -15,7 +15,7 @@
 | skill         | `doc-review`                   | ドキュメント品質レビュー             |
 | agent         | `doc-reviewer`                 | ドキュメントレビュー専門エージェント |
 | rule          | `document-generation-guide.md` | ドキュメント生成時のフォーマット規約 |
-| rule (shared) | `commit-conventions.md`        | コミット規約                         |
+| rule          | `commit-conventions.md`        | コミット規約                         |
 
 ## インストール
 
@@ -33,4 +33,4 @@ curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | 
 curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | bash -s -- remove docs-toolkit
 ```
 
-`.claude/.dotclaude-manifest.json` を参照し、この pack 由来のファイルだけを削除する。共有ファイル（`commit-conventions.md` 等）は他 pack が参照中なら残る。
+`.claude/.dotclaude-manifest.json` を参照し、この pack 由来のファイルだけを削除する。他 pack が参照中のファイル（`commit-conventions.md` 等）は残る。
