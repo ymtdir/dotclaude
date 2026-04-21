@@ -11,9 +11,7 @@
     "skills/pr-review/",
     "skills/issue-creation/",
     "skills/issue-resolution/",
-    "rules/label-definitions.md"
-  ],
-  "shared": [
+    "rules/label-definitions.md",
     "rules/commit-conventions.md"
   ]
 }

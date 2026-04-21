@@ -53,10 +53,10 @@ fetch_required() {
 }
 
 fetch_dir() {
-  local pack_path="$1" rel="$2" dest="$3"
-  [[ -d "$SOURCE/$pack_path/$rel" ]] || die "directory not found in source: ${pack_path}/${rel}"
+  local rel="$1" dest="$2"
+  [[ -d "$SOURCE/$rel" ]] || die "directory not found in source: ${rel}"
   mkdir -p "$(dirname "$dest")"
-  cp -R "$SOURCE/$pack_path/$rel" "$dest"
+  cp -R "$SOURCE/$rel" "$dest"
 }
 
 fetch_file() {
@@ -174,9 +174,6 @@ expand_targets() {
       echo -e "file\t${entry}\t${entry}"
     fi
   done
-  echo "$pack_json" | jq -r '.shared[]?' | while read -r entry; do
-    echo -e "shared\t${entry}\t${entry}"
-  done
 }
 
 cmd_add() {
@@ -198,9 +195,8 @@ cmd_add() {
       info "skip (exists): .claude/${dest}  (use --force to overwrite)"
     else
       case "$kind" in
-        file)   fetch_file "${pack_path}/${src}" "$target" ;;
-        dir)    fetch_dir  "${pack_path}" "${src}" "$target" ;;
-        shared) fetch_file "packs/shared/${src}" "$target" ;;
+        file)   fetch_file "${src}" "$target" ;;
+        dir)    fetch_dir  "${src}" "$target" ;;
       esac
       info "added: .claude/${dest}"
     fi

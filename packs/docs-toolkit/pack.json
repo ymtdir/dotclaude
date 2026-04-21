@@ -10,9 +10,7 @@
     "skills/detailed-design/",
     "skills/development-guide/",
     "skills/doc-review/",
-    "rules/document-generation-guide.md"
-  ],
-  "shared": [
+    "rules/document-generation-guide.md",
     "rules/commit-conventions.md"
   ]
 }

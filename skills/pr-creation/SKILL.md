@@ -27,7 +27,7 @@ git diff --name-only origin/main...HEAD
 
 ### ステップ3: ラベルの判定
 
-判定ルールは `../rules/label-definitions.md` を参照。
+判定ルールは `../../rules/label-definitions.md` を参照。
 
 - 関連Issueがある場合 → Issueのラベルを継承（最優先）
 - Issueがない場合 → コミットプレフィックスから判定
@@ -64,7 +64,7 @@ Agent toolでpr-reviewerサブエージェントを起動：
 
 ## PRタイトルの生成
 
-コミットプレフィックスの詳細は `../rules/commit-conventions.md` を参照。
+コミットプレフィックスの詳細は `../../rules/commit-conventions.md` を参照。
 
 ### Issue連携あり
 
