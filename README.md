@@ -3,7 +3,7 @@
 Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 
 - **settings.json** はホーム（`~/.claude/settings.json`）にシンボリックリンクで常駐
-- **agents / commands / skills / rules** は用途別 **pack** にまとめ、必要なリポジトリにだけ `install.sh` で配布
+- **skills / agents / commands / rules** はリポジトリ直下にフラット配置し、**pack** でグループ定義して `install.sh` で必要なリポジトリにだけ配布
 
 ## ディレクトリ構成
 
@@ -12,9 +12,14 @@ Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 | [settings.json](settings.json)                 | Claude Code 全体設定（permissions, hooks, sandbox など）。`~/.claude/settings.json` にシンボリックリンク |
 | [install.sh](install.sh)                       | リモート実行用インストーラ（`list` / `add` / `remove`）                                                  |
 | [registry.json](registry.json)                 | 利用可能な pack の一覧                                                                                   |
-| [packs/github-toolkit/](packs/github-toolkit/) | PR/Issue 作成・解決・レビュー一式                                                                        |
-| [packs/docs-toolkit/](packs/docs-toolkit/)     | 要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式                                                  |
-| [packs/shared/](packs/shared/)                 | 複数 pack 共通ファイルの実体（コミット規約など）                                                         |
+| [skills/](skills/)                             | 全 skill の実体                                                                                          |
+| [agents/](agents/)                             | 全 agent の実体                                                                                          |
+| [commands/](commands/)                         | 全 slash command の実体                                                                                  |
+| [rules/](rules/)                               | 全 rule の実体                                                                                           |
+| [packs/github-toolkit/](packs/github-toolkit/) | PR/Issue 作成・解決・レビュー一式（pack.json / settings.json / README.md）                               |
+| [packs/docs-toolkit/](packs/docs-toolkit/)     | 要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式（pack.json / settings.json / README.md）         |
+
+各 pack は `pack.json` に「含めるファイル一覧」を、`settings.json` に「追加で merge する設定」を持つメタ情報だけを保持する。実体は上記 `skills/` / `agents/` / `commands/` / `rules/` にフラット配置され、複数 pack で同じファイルを参照できる。
 
 ## settings.json のセットアップ
 
@@ -44,7 +49,7 @@ curl -fsSL https://raw.githubusercontent.com/ymtdir/dotclaude/main/install.sh | 
 
 ## 依存
 
-`install.sh` は `bash` / `curl` / `jq` / `tar` を利用する（macOS / 一般的な Linux で標準）。
+`install.sh` は `bash` / `git` / `jq` を利用する（macOS / 一般的な Linux で標準）。リモート取得時は `git clone --depth 1` で一度だけリポジトリを取得する。
 
 ## ローカル開発
 
