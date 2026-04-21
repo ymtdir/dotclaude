@@ -13,3 +13,8 @@
 ## 期待される効果
 
 [導入によるメリット]
+
+## コンテキスト
+
+- branch: [git branch --show-current]
+- latest commit: [git log -1 --oneline]

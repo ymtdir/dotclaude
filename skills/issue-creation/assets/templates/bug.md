@@ -15,3 +15,13 @@
 ## 実際の動作
 
 [現在の動作]
+
+## 環境
+
+- OS / ブラウザ / バージョン: [該当する場合のみ]
+- 関連するエラーログ: [コンソール出力 / スタックトレース等]
+
+## コンテキスト
+
+- branch: [git branch --show-current]
+- latest commit: [git log -1 --oneline]

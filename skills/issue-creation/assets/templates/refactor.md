@@ -17,3 +17,8 @@
 ## 作業規模
 
 [Small/Medium/Large]
+
+## コンテキスト
+
+- branch: [git branch --show-current]
+- latest commit: [git log -1 --oneline]

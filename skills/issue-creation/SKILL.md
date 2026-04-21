@@ -29,30 +29,49 @@ git log -1 --oneline
 
 ### ステップ3: テンプレートの適用
 
-選択されたテンプレートを読み込み、情報を埋め込み：
+選択されたラベルに対応するテンプレートを読み込み、情報を埋め込みます。ステップ2で取得した `branch` / `latest commit` は、テンプレ末尾の `## コンテキスト` 節にそのまま転記する。
 
 - **bug** → `assets/templates/bug.md`
 - **enhancement** → `assets/templates/enhancement.md`
 - **refactor** → `assets/templates/refactor.md`
-- **documentation** → シンプルな説明形式
+- **ui/ux** → `assets/templates/ui-ux.md`
+- **documentation** → `assets/templates/documentation.md`
+
+プレースホルダ（`[...]` で囲われた箇所）は取得値や具体的な内容で置換する。該当情報が無い欄は `N/A` と記す（欄ごと削除しない）。
 
 ### ステップ4: GitHub Issue作成
 
-`gh issue create`コマンドでIssueを作成します。
+`gh issue create` を以下の雛形で実行する。タイトルは課題の要点を 1 行・50 文字以内で表現し、接頭辞（`[bug]` など）は付けない。
+
+```bash
+gh issue create \
+  --title "<課題タイトル>" \
+  --label "<ラベル名>" \
+  --body "$(cat <<'EOF'
+<ステップ3 で生成した Issue 本文>
+EOF
+)"
+```
+
+`--assignee` / `--milestone` / `--project` 等はユーザーから明示指示があった場合のみ追加する。
 
 ## エラーハンドリング
 
-### GitHub未設定の場合
+### GitHub 認証エラー / 未設定の場合
 
-ローカルファイルとして保存：
+`gh auth status` が未認証エラーを返した場合、以下の両方を行う:
 
-```bash
-Write('.issues-pending/[日時]-[タイトル].md', [Issue内容])
-```
+1. Issue 内容をリポジトリルート直下にローカル保存する:
 
-### 認証エラーの場合
+   ```
+   Write('<repo-root>/.issues-pending/<YYYY-MM-DD>-<slug>.md', <Issue 内容>)
+   ```
 
-`gh auth status`で確認するよう案内。
+   - `<YYYY-MM-DD>` は保存日（例: `2026-04-21`）
+   - `<slug>` は Issue タイトルを英小文字 + ハイフン区切りに変換（日本語・スペース・スラッシュは除去または置換）
+   - ファイル先頭に `# <タイトル>` と `labels: <ラベル名>` を付与し、ステップ3 の本文を続ける
+
+2. ユーザーに `gh auth status` で認証状態を確認し、再認証後に保存ファイルを元に Issue 作成するよう案内する。
 
 ## トラブルシューティング
 
