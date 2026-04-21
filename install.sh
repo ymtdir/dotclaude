@@ -28,17 +28,21 @@ require_cmd() {
 }
 
 require_cmd jq
-require_cmd tar
+
+ensure_source() {
+  [[ -n "$SOURCE" ]] && return 0
+  require_cmd git
+  SOURCE="$(mktemp -d)"
+  trap 'rm -rf "$SOURCE"' EXIT
+  info "fetching ${REPO}@${REF}..."
+  git clone --depth 1 --branch "$REF" "https://github.com/${REPO}.git" "$SOURCE" >/dev/null 2>&1 \
+    || die "failed to clone https://github.com/${REPO}.git (ref: ${REF})"
+}
 
 # fetch <relative-path>  →  stdout（無ければ空）
 fetch() {
   local rel="$1"
-  if [[ -n "$SOURCE" ]]; then
-    [[ -f "$SOURCE/$rel" ]] && cat "$SOURCE/$rel" || true
-  else
-    require_cmd curl
-    curl -fsSL "https://raw.githubusercontent.com/${REPO}/${REF}/${rel}" || true
-  fi
+  [[ -f "$SOURCE/$rel" ]] && cat "$SOURCE/$rel" || true
 }
 
 fetch_required() {
@@ -50,21 +54,9 @@ fetch_required() {
 
 fetch_dir() {
   local pack_path="$1" rel="$2" dest="$3"
-  if [[ -n "$SOURCE" ]]; then
-    mkdir -p "$(dirname "$dest")"
-    cp -R "$SOURCE/$pack_path/$rel" "$dest"
-  else
-    require_cmd curl
-    local tmp
-    tmp="$(mktemp -d)"
-    trap 'rm -rf "$tmp"' RETURN
-    curl -fsSL "https://codeload.github.com/${REPO}/tar.gz/${REF}" \
-      | tar -xz -C "$tmp"
-    local extracted
-    extracted="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d | head -n1)"
-    mkdir -p "$(dirname "$dest")"
-    cp -R "${extracted}/${pack_path}/${rel%/}" "$dest"
-  fi
+  [[ -d "$SOURCE/$pack_path/$rel" ]] || die "directory not found in source: ${pack_path}/${rel}"
+  mkdir -p "$(dirname "$dest")"
+  cp -R "$SOURCE/$pack_path/$rel" "$dest"
 }
 
 fetch_file() {
@@ -165,6 +157,7 @@ rebuild_settings() {
 # ─── commands ────────────────────────────────────────────────────
 
 cmd_list() {
+  ensure_source
   local registry
   registry="$(fetch_required registry.json)"
   echo "$registry" | jq -r '.packs[] | "\(.name)\t\(.description)"' | column -t -s $'\t'
@@ -187,6 +180,7 @@ expand_targets() {
 }
 
 cmd_add() {
+  ensure_source
   local pack="$1"
   local registry pack_path
   registry="$(fetch_required registry.json)"
