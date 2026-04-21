@@ -27,6 +27,16 @@ Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 ln -s ~/dotclaude/settings.json ~/.claude/settings.json
 ```
 
+## 個別の skill / agent / command をホームディレクトリに常駐させる
+
+特定の skill（あるいは agent / command）をどのリポジトリでも使えるようにしたい場合は、`~/.claude/skills/` 配下にシンボリックリンクを貼る。
+
+```bash
+ln -s ~/dotclaude/skills/empirical-prompt-tuning ~/.claude/skills/empirical-prompt-tuning
+```
+
+agent / command も同様に `~/.claude/agents/` / `~/.claude/commands/` にリンクする。pack 単位ではなく単体で配りたいケース向け。
+
 ## pack のインストール
 
 対象リポジトリのルートで以下を実行すると、`<repo>/.claude/` 配下に必要なファイルが配置される。
