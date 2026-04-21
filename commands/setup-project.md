@@ -4,99 +4,66 @@ description: 初回プロジェクトセットアップ。4つのドキュメン
 
 # 初回プロジェクトセットアップ
 
-このコマンドは、プロジェクトの4つの永続ドキュメントを対話的に作成します。
-各ステップでユーザーの承認を得てから次のドキュメントに進みます。
-
-## 実行方法
-
-```bash
-claude
-> /setup-project
-```
+このコマンドは、プロジェクトの 4 つの永続ドキュメントを対話的に作成します。各ステップでユーザーの承認を得てから次のドキュメントに進みます。
 
 ## 実行前の確認
 
-`docs/ideas/` ディレクトリ内のファイルを確認します。
+以下のパスの存在を確認し、ユーザーに状況を提示する:
 
-```bash
-# 確認
-ls docs/ideas/
+- `docs/ideas/` 配下のアイデアメモ
+- 4 つの成果物: `docs/requirements.md` / `docs/basic-design.md` / `docs/detailed-design.md` / `docs/development-guide.md`
 
-# ファイルが存在する場合
-✅ docs/ideas/xxx.md が見つかりました
-   この内容を元に要件定義書を作成します
+### 既存ドキュメント検出時のフロー
 
-# ファイルが存在しない場合
-⚠️  docs/ideas/ にファイルがありません
-   対話形式で要件定義書を作成します
-```
+4 成果物のいずれかが既に存在する場合、ユーザーに以下の選択肢を提示してから該当ステップに進む:
+
+- **(A) 再利用（skip）**: 既存ファイルをそのまま次ステップの入力として使う
+- **(B) 更新**: 該当 skill の「既存ドキュメント更新時の整合判断」節に従って差分更新する
+- **(C) 再作成**: 既存を破棄して新規作成（承認必須、`<file>.bak` に退避推奨）
 
 ## 手順
 
-### ステップ0: インプットの読み込み
-
-1. `docs/ideas/` 内のマークダウンファイルを全て読む
-2. 内容を理解し、要件定義書作成の参考にする
-
 ### ステップ1: 要件定義書の作成
 
-1. **requirements-definitionスキル**をロード
-2. `docs/ideas/`の内容を元に`docs/requirements.md`を作成
-3. 壁打ちで出たアイデアを具体化：
-   - 詳細なユーザーストーリー
-   - 受け入れ条件
-   - 非機能要件
-   - 成功指標
-4. ユーザーに確認を求め、**承認されるまで待機**
+1. **requirements-definition スキル**を呼び出し、`docs/requirements.md` を作成（または (A)/(B)/(C) に従って処理）
+2. skill 内部で `docs/ideas/*.md` の有無を判定し、空なら対話形式ヒアリングに切り替える（skill 側で処理）
+3. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ2: 基本設計書の作成
 
-1. **basic-designスキル**をロード
-2. `docs/requirements.md`を読む
-3. スキルのテンプレートとガイドに従って`docs/basic-design.md`を作成
-4. ユーザーに確認を求め、**承認されるまで待機**
+1. **basic-design スキル**を呼び出し、`docs/basic-design.md` を作成（または (A)/(B)/(C) に従って処理）
+2. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ3: 詳細設計書の作成
 
-1. **detailed-designスキル**をロード
-2. 既存のドキュメントを読む
-3. スキルのテンプレートとガイドに従って`docs/detailed-design.md`を作成
-4. ユーザーに確認を求め、**承認されるまで待機**
+1. **detailed-design スキル**を呼び出し、`docs/detailed-design.md` を作成（または (A)/(B)/(C) に従って処理）
+2. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ4: 開発ガイドラインの作成
 
-1. **development-guideスキル**をロード
-2. 既存のドキュメントを読む
-3. スキルのテンプレートに従って`docs/development-guide.md`を作成
-4. ユーザーに確認を求め、**承認されるまで待機**
+1. **development-guide スキル**を呼び出し、`docs/development-guide.md` を作成（または (A)/(B)/(C) に従って処理）
+2. ユーザーに確認を求め、**承認されるまで待機**
 
 ## 完了条件
 
-- 4つの永続ドキュメントが全て作成されていること
+4 つの永続ドキュメントが全て作成されていること。
 
 完了時のメッセージ:
 
 ```
-「初回セットアップが完了しました!
+✅ 初回セットアップが完了しました。
 
 作成したドキュメント:
-✅ docs/requirements.md
-✅ docs/basic-design.md
-✅ docs/detailed-design.md
-✅ docs/development-guide.md
+- docs/requirements.md
+- docs/basic-design.md
+- docs/detailed-design.md
+- docs/development-guide.md
 
 これで開発を開始する準備が整いました。
 
 今後の使い方:
-- ドキュメントの編集: 普通に会話で依頼してください
-  例: 「要件定義書に新機能を追加して」「基本設計を見直して」
-
-- 新機能の追加（Issue駆動開発）:
-  1. /create-issue [機能名] でIssueを作成
-  2. /resolve-issue [Issue番号] で実装
-  例: /create-issue ユーザー認証機能の追加
-
-- ドキュメントレビュー: /review-doc [パス] を実行してください
-  例: /review-doc docs/requirements.md
-」
+- ドキュメントの編集: 普通に会話で依頼
+  例: 「要件定義書に新機能を追加して」
+- 新機能追加（Issue駆動）: /create-issue → /resolve-issue → /create-pr
+- ドキュメントレビュー: /review-doc <パス>
 ```
