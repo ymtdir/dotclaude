@@ -29,36 +29,61 @@ git diff --name-only origin/main...HEAD
 
 判定ルールは `../../rules/label-definitions.md` を参照。
 
-- 関連Issueがある場合 → Issueのラベルを継承（最優先）
-- Issueがない場合 → コミットプレフィックスから判定
+- **関連Issueがある場合**: Issue のラベルを継承（最優先）。以下で取得する:
+
+  ```bash
+  gh issue view <Issue番号> --json labels --jq '.labels[].name'
+  ```
+
+- **Issueがない場合**: コミットプレフィックスの頻度から判定。`test:` / `chore:` / `style:`（UI/UX 以外の用途）はカウント対象外。
 
 ### ステップ4: テンプレートの適用
 
-判定された種類に応じてテンプレートを選択:
+判定された種類に応じてテンプレートを選択し、プレースホルダ（`[...]`）を取得値や具体的内容で置換する:
 
 - **bug** → `./assets/templates/bug.md`
 - **enhancement** → `./assets/templates/enhancement.md`
 - **refactor** → `./assets/templates/refactor.md`
-- **documentation** → シンプルなドキュメント更新形式
+- **ui/ux** → `./assets/templates/ui-ux.md`
+- **documentation** → `./assets/templates/documentation.md`
 
-### ステップ5: PR作成
+Issue 連携がない場合は本文の `## 関連Issue` 節内容を `なし` に置換し、`Closes #[Issue番号]` 行は削除する。
+
+### ステップ5: リモートへの push
+
+ブランチが未 push or リモートと差分がある場合のみ push する:
 
 ```bash
-gh pr create --title "[PRタイトル]" --body "[テンプレートで生成した本文]" --base main
+# 追跡ブランチの有無を確認
+git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "no-upstream"
+
+# 未 push なら
+git push -u origin <現在のブランチ名>
 ```
 
-### ステップ6: ラベル付与
+### ステップ6: PR作成
+
+ラベルは `--label` で同時に指定する。PR 番号は出力から `--json` で抽出して後続ステップで使う:
 
 ```bash
-gh pr edit [PR番号] --add-label "[ラベル]"
+PR_URL=$(gh pr create \
+  --base main \
+  --title "<PRタイトル>" \
+  --body "$(cat <<'EOF'
+<ステップ4で生成した PR 本文>
+EOF
+)" \
+  --label "<ラベル>")
+
+PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
 ```
 
 ### ステップ7: 自動レビュー
 
-Agent toolでpr-reviewerサブエージェントを起動：
+Agent tool で pr-reviewer サブエージェントを起動:
 
 - subagent_type: `pr-reviewer`
-- prompt: 「Pull Request #[PR番号]をレビューしてください。ラベルは [ラベル名] です。」
+- prompt: 「Pull Request #${PR_NUMBER} をレビューしてください。ラベルは <ラベル名> です。」
 
 ラベルを渡すことで、エージェントがラベルに応じた専門スペシャリストの観点でレビューを実施します。
 
@@ -82,8 +107,8 @@ feat: [主要な変更内容を要約]
 
 ## エラーハンドリング
 
-| 症状 | 対処 |
-| ---- | ---- |
-| mainブランチにいる | 新しいブランチを作成するよう案内 |
-| 変更がない | コミットしてから再実行するよう案内 |
-| コンフリクトがある | 競合ファイルを表示し解決を促す |
+| 症状               | 対処                               |
+| ------------------ | ---------------------------------- |
+| mainブランチにいる | 新しいブランチを作成するよう案内   |
+| 変更がない         | コミットしてから再実行するよう案内 |
+| コンフリクトがある | 競合ファイルを表示し解決を促す     |
