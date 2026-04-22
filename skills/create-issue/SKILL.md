@@ -1,11 +1,16 @@
 ---
-name: issue-creation
-description: 開発中に発見した課題をGitHub Issueとして作成する。/create-issueや/init-issuesから使用。bug/enhancement/refactorに分類しラベルを適用。
+name: create-issue
+description: 開発中に発見した課題をGitHub Issueとして作成する。「Issue作って」「課題をIssue化」と言われた時、または init-issues skill から使用。bug/enhancement/ui/ux/documentation/refactor に分類しラベルを適用。
 ---
 
 # Issue Tracking スキル
 
 開発中に発見した課題をGitHub Issueとして記録するスキルです。
+
+## 入力契約
+
+- **課題説明**: 必須。ユーザーが入力した自由文をそのまま課題説明として扱う
+- オプションフラグ（`--type` など）は受け付けない（種類判定は本 skill が行う）
 
 ## Issue作成プロセス
 
@@ -54,6 +59,22 @@ EOF
 ```
 
 `--assignee` / `--milestone` / `--project` 等はユーザーから明示指示があった場合のみ追加する。
+
+## 出力契約
+
+処理完了時、Issue 作成の出力 URL 末尾から Issue 番号を抽出し、以下のフォーマットで報告する:
+
+```
+✅ Issue #[番号]を作成しました。
+
+タイトル: [課題タイトル]
+種類: [bug/enhancement/ui/ux/documentation/refactor]
+URL: [GitHub Issue URL]
+
+現在の作業を続けてください。
+```
+
+init-issues skill など別 skill から呼ばれる場合は、呼び出し元が独自の集約レポートを出すため、この節の出力は省略して Issue 番号のみを返してよい。
 
 ## エラーハンドリング
 
