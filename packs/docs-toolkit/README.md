@@ -4,18 +4,17 @@
 
 ## 含まれるもの
 
-| 種別          | 名前                           | 役割                                 |
-| ------------- | ------------------------------ | ------------------------------------ |
-| command       | `/setup-project`               | 4 ドキュメントを対話的に一括作成     |
-| command       | `/review-doc`                  | 指定ドキュメントを 5 観点でレビュー  |
-| skill         | `requirements-definition`      | 要件定義書の作成                     |
-| skill         | `basic-design`                 | 基本設計書の作成                     |
-| skill         | `detailed-design`              | 詳細設計書の作成                     |
-| skill         | `development-guide`            | 開発ガイドラインの作成               |
-| skill         | `doc-review`                   | ドキュメント品質レビュー             |
-| agent         | `doc-reviewer`                 | ドキュメントレビュー専門エージェント |
-| rule          | `document-generation-guide.md` | ドキュメント生成時のフォーマット規約 |
-| rule          | `commit-conventions.md`        | コミット規約                         |
+| 種別  | 名前                           | 役割                                 |
+| ----- | ------------------------------ | ------------------------------------ |
+| skill | `setup-project`                | 4 ドキュメントを対話的に一括作成     |
+| skill | `requirements-definition`      | 要件定義書の作成                     |
+| skill | `basic-design`                 | 基本設計書の作成                     |
+| skill | `detailed-design`              | 詳細設計書の作成                     |
+| skill | `development-guide`            | 開発ガイドラインの作成               |
+| skill | `review-doc`                   | ドキュメント品質レビュー             |
+| agent | `doc-reviewer`                 | ドキュメントレビュー専門エージェント |
+| rule  | `document-generation-guide.md` | ドキュメント生成時のフォーマット規約 |
+| rule  | `commit-conventions.md`        | コミット規約                         |
 
 ## インストール
 

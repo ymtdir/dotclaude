@@ -1,6 +1,6 @@
 ---
 name: requirements-definition
-description: 要件定義書を作成する。「要件定義」と言われた時、または/setup-projectのステップ1で使用。docs/ideas/があれば参考にし、docs/requirements.mdに出力。
+description: 要件定義書を作成する。「要件定義」と言われた時、または setup-project skill のステップ1で使用。docs/ideas/があれば参考にし、docs/requirements.mdに出力。
 ---
 
 # 要件定義書作成スキル

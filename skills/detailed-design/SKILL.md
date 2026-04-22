@@ -1,6 +1,6 @@
 ---
 name: detailed-design
-description: 詳細設計書を作成する。「詳細設計」と言われた時、または/setup-projectのステップ3で使用。要件定義書と基本設計書が前提。docs/detailed-design.mdに出力。
+description: 詳細設計書を作成する。「詳細設計」と言われた時、または setup-project skill のステップ3で使用。要件定義書と基本設計書が前提。docs/detailed-design.mdに出力。
 ---
 
 # 詳細設計書作成スキル

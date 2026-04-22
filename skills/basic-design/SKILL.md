@@ -1,6 +1,6 @@
 ---
 name: basic-design
-description: 基本設計書を作成する。「基本設計」と言われた時、または/setup-projectのステップ2で使用。要件定義書が前提。docs/basic-design.mdに出力。
+description: 基本設計書を作成する。「基本設計」と言われた時、または setup-project skill のステップ2で使用。要件定義書が前提。docs/basic-design.mdに出力。
 ---
 
 # 基本設計書作成スキル

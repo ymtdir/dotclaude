@@ -1,6 +1,6 @@
 ---
 name: development-guide
-description: 開発ガイドライン（リポジトリ構造・コーディング規約・用語集）を作成する。「開発ガイドライン」「リポジトリ構造」「コーディング規約」「用語集」と言われた時、または/setup-projectのステップ4で使用。docs/development-guide.mdに出力。
+description: 開発ガイドライン（リポジトリ構造・コーディング規約・用語集）を作成する。「開発ガイドライン」「リポジトリ構造」「コーディング規約」「用語集」と言われた時、または setup-project skill のステップ4で使用。docs/development-guide.mdに出力。
 ---
 
 # 開発ガイドライン作成スキル

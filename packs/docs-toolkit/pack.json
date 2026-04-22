@@ -3,13 +3,12 @@
   "description": "要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式",
   "files": [
     "agents/doc-reviewer.md",
-    "commands/setup-project.md",
-    "commands/review-doc.md",
+    "skills/setup-project/",
     "skills/requirements-definition/",
     "skills/basic-design/",
     "skills/detailed-design/",
     "skills/development-guide/",
-    "skills/doc-review/",
+    "skills/review-doc/",
     "rules/document-generation-guide.md",
     "rules/commit-conventions.md"
   ]

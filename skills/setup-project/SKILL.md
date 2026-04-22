@@ -1,10 +1,11 @@
 ---
-description: 初回プロジェクトセットアップ。4つのドキュメント（要件定義書・基本設計書・詳細設計書・開発ガイドライン）を対話的に作成。
+name: setup-project
+description: プロジェクトの 4 ドキュメント（要件定義書・基本設計書・詳細設計書・開発ガイドライン）を対話的に一括作成する。「プロジェクトの初回セットアップ」「4ドキュメント作って」と言われた時に使用。各ステップでユーザー承認を得てから次に進む。
 ---
 
-# 初回プロジェクトセットアップ
+# 初回プロジェクトセットアップスキル
 
-このコマンドは、プロジェクトの 4 つの永続ドキュメントを対話的に作成します。各ステップでユーザーの承認を得てから次のドキュメントに進みます。
+プロジェクトの 4 つの永続ドキュメントを対話的に作成するスキルです。各ステップでユーザーの承認を得てから次のドキュメントに進みます。
 
 ## 実行前の確認
 
@@ -25,23 +26,23 @@ description: 初回プロジェクトセットアップ。4つのドキュメン
 
 ### ステップ1: 要件定義書の作成
 
-1. **requirements-definition スキル**を呼び出し、`docs/requirements.md` を作成（または (A)/(B)/(C) に従って処理）
+1. **requirements-definition skill** を呼び出し、`docs/requirements.md` を作成（または (A)/(B)/(C) に従って処理）
 2. skill 内部で `docs/ideas/*.md` の有無を判定し、空なら対話形式ヒアリングに切り替える（skill 側で処理）
 3. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ2: 基本設計書の作成
 
-1. **basic-design スキル**を呼び出し、`docs/basic-design.md` を作成（または (A)/(B)/(C) に従って処理）
+1. **basic-design skill** を呼び出し、`docs/basic-design.md` を作成（または (A)/(B)/(C) に従って処理）
 2. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ3: 詳細設計書の作成
 
-1. **detailed-design スキル**を呼び出し、`docs/detailed-design.md` を作成（または (A)/(B)/(C) に従って処理）
+1. **detailed-design skill** を呼び出し、`docs/detailed-design.md` を作成（または (A)/(B)/(C) に従って処理）
 2. ユーザーに確認を求め、**承認されるまで待機**
 
 ### ステップ4: 開発ガイドラインの作成
 
-1. **development-guide スキル**を呼び出し、`docs/development-guide.md` を作成（または (A)/(B)/(C) に従って処理）
+1. **development-guide skill** を呼び出し、`docs/development-guide.md` を作成（または (A)/(B)/(C) に従って処理）
 2. ユーザーに確認を求め、**承認されるまで待機**
 
 ## 完了条件
@@ -64,6 +65,7 @@ description: 初回プロジェクトセットアップ。4つのドキュメン
 今後の使い方:
 - ドキュメントの編集: 普通に会話で依頼
   例: 「要件定義書に新機能を追加して」
-- 新機能追加（Issue駆動）: /create-issue → /resolve-issue → /create-pr
-- ドキュメントレビュー: /review-doc <パス>
+- 初期Issue 一括作成: init-issues skill
+- 新機能追加（Issue駆動）: create-issue → resolve-issue → create-pr の各 skill
+- ドキュメントレビュー: review-doc skill に対象パスを渡す
 ```

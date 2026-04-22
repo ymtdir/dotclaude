@@ -6,13 +6,11 @@
 
 ## 適用範囲
 
-このラベル定義は以下のすべてのコマンド/スキルで**必須**です：
+このラベル定義は以下のすべてのスキルで**必須**です：
 
-- `/init-issues` - 初期Issue一括作成
-- `/create-issue` - Issue作成
-- `/create-pr` - Pull Request作成
-- `issue-creation` スキル
-- `pr-creation` スキル
+- `init-issues` - 初期Issue一括作成
+- `create-issue` - Issue作成
+- `create-pr` - Pull Request作成
 - その他、GitHub Issue/PRを作成するすべての操作
 
 ## 標準ラベル
@@ -60,7 +58,7 @@
 
 ## 判定ルール
 
-### Issue作成時（issue-creation）
+### Issue作成時（create-issue）
 
 1. タイトルと本文のキーワードをチェック
 2. 複数のキーワードがマッチした場合、優先順位の高いラベルを採用
@@ -71,7 +69,7 @@
 - **bug vs ui/ux**: ロジック/動作の失敗（クラッシュ、例外、遷移しない等）は `bug`、ビジュアル/スタイルのずれ（配色、余白、コントラスト不足等）は `ui/ux`
 - **bug の共起要件**: `bug` 判定には `error/broken/crash/fail/動作しない/エラー` 等の「不具合を示唆する語」が共起していること。`修正` / `fix` 単独でマッチしても、不具合語が無ければ `enhancement` 等に流す
 
-### PR作成時（pr-creation）
+### PR作成時（create-pr）
 
 1. 関連Issueのラベルがあれば継承（最優先）
 2. コミットプレフィックスの頻度で判定
