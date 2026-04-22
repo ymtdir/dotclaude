@@ -1,5 +1,5 @@
 ---
-name: pr-review
+name: review-pr
 description: PRのラベルに応じて専門スペシャリストを選択し、領域特化のレビューを実施する。pr-reviewerエージェントから使用。
 ---
 
