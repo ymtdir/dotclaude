@@ -1,11 +1,16 @@
 ---
-name: pr-creation
-description: 現在のブランチの変更からPull Requestを作成する。/create-prコマンドから使用。変更分析→テンプレート選択→PR作成→ラベル適用→自動レビュー。
+name: create-pr
+description: 現在のブランチの変更からPull Requestを作成する。「PR作って」「Pull Request 作成」と言われた時に使用。変更分析→テンプレート選択→PR作成→ラベル適用→自動レビュー。
 ---
 
 # Pull Request Creation スキル
 
 現在のブランチの変更内容を分析し、GitHub Pull Requestを作成するスキルです。
+
+## 入力契約
+
+- 引数なし。現在のブランチを対象に動作する
+- `main` / `master` ブランチにいる場合はエラーハンドリング表に従い中止する
 
 ## PR作成プロセス
 
@@ -86,6 +91,28 @@ Agent tool で pr-reviewer サブエージェントを起動:
 - prompt: 「Pull Request #${PR_NUMBER} をレビューしてください。ラベルは <ラベル名> です。」
 
 ラベルを渡すことで、エージェントがラベルに応じた専門スペシャリストの観点でレビューを実施します。
+
+## 出力契約
+
+`gh pr create` の出力 URL 末尾から PR 番号を抽出し、以下のフォーマットで報告する:
+
+```
+✅ PR #[番号]を作成しました。
+
+タイトル: [PRタイトル]
+種類: [bug/enhancement/ui/ux/documentation/refactor]
+関連Issue: #[Issue番号] または なし
+URL: [GitHub PR URL]
+
+レビュー待ちです。
+```
+
+## 完了条件
+
+- Pull Request が正常に作成される
+- 関連 Issue がある場合は紐付け完了
+- ラベルに対応するテンプレートが適用される
+- 自動レビュー（pr-reviewer agent）が GitHub に投稿される
 
 ## PRタイトルの生成
 
