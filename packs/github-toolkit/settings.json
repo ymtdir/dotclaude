@@ -2,10 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(gh:*)",
-      "Skill(issue-creation)",
-      "Skill(issue-resolution)",
-      "Skill(pr-creation)",
-      "Skill(pr-review)"
+      "Skill(create-issue)",
+      "Skill(resolve-issue)",
+      "Skill(create-pr)",
+      "Skill(review-pr)",
+      "Skill(init-issues)"
     ],
     "ask": ["Bash(git push:*)"]
   },
@@ -27,10 +28,11 @@
   },
   "skills": {
     "allowed": [
-      "issue-creation",
-      "issue-resolution",
-      "pr-creation",
-      "pr-review"
+      "create-issue",
+      "resolve-issue",
+      "create-pr",
+      "review-pr",
+      "init-issues"
     ]
   }
 }

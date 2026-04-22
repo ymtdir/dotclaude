@@ -3,14 +3,11 @@
   "description": "PR/Issue 作成・解決・レビューと関連ルール一式",
   "files": [
     "agents/pr-reviewer.md",
-    "commands/create-pr.md",
-    "commands/create-issue.md",
-    "commands/init-issues.md",
-    "commands/resolve-issue.md",
-    "skills/pr-creation/",
-    "skills/pr-review/",
-    "skills/issue-creation/",
-    "skills/issue-resolution/",
+    "skills/create-pr/",
+    "skills/review-pr/",
+    "skills/create-issue/",
+    "skills/resolve-issue/",
+    "skills/init-issues/",
     "rules/label-definitions.md",
     "rules/commit-conventions.md"
   ]

@@ -4,16 +4,16 @@ GitHub の PR / Issue 周りを Claude Code 上で完結させるためのツー
 
 ## 含まれるもの
 
-| 種別          | 名前                                                                | 役割                                         |
-| ------------- | ------------------------------------------------------------------- | -------------------------------------------- |
-| command       | `/create-issue`                                                     | 課題を Issue として起票                      |
-| command       | `/init-issues`                                                      | 初期開発 Issue 群を一括作成                  |
-| command       | `/resolve-issue`                                                    | Issue をブランチ作成 + 原子的コミットで解決  |
-| command       | `/create-pr`                                                        | 現ブランチから PR を作成（自動レビュー連携） |
-| skill         | `issue-creation` / `issue-resolution` / `pr-creation` / `pr-review` | 各コマンドの実体                             |
-| agent         | `pr-reviewer`                                                       | PR レビューの専門エージェント                |
-| rule          | `label-definitions.md`                                              | 標準 5 ラベル定義                            |
-| rule          | `commit-conventions.md`                                             | コミット規約                                 |
+| 種別  | 名前                    | 役割                                                     |
+| ----- | ----------------------- | -------------------------------------------------------- |
+| skill | `create-issue`          | 課題を Issue として起票                                  |
+| skill | `init-issues`           | 初期開発 Issue 群を一括作成（要件/設計ドキュメント前提） |
+| skill | `resolve-issue`         | Issue をブランチ作成 + 原子的コミットで解決              |
+| skill | `create-pr`             | 現ブランチから PR を作成（自動レビュー連携）             |
+| skill | `review-pr`             | pr-reviewer agent のレビューロジック                     |
+| agent | `pr-reviewer`           | PR レビューの専門エージェント                            |
+| rule  | `label-definitions.md`  | 標準 5 ラベル定義                                        |
+| rule  | `commit-conventions.md` | コミット規約                                             |
 
 ## インストール
 

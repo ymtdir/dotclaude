@@ -3,7 +3,7 @@
 Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 
 - **settings.json** はホーム（`~/.claude/settings.json`）にシンボリックリンクで常駐
-- **skills / agents / commands / rules** はリポジトリ直下にフラット配置し、**pack** でグループ定義して `install.sh` で必要なリポジトリにだけ配布
+- **skills / agents / rules** はリポジトリ直下にフラット配置し、**pack** でグループ定義して `install.sh` で必要なリポジトリにだけ配布
 
 ## ディレクトリ構成
 
@@ -14,12 +14,11 @@ Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 | [registry.json](registry.json)                 | 利用可能な pack の一覧                                                                                   |
 | [skills/](skills/)                             | 全 skill の実体                                                                                          |
 | [agents/](agents/)                             | 全 agent の実体                                                                                          |
-| [commands/](commands/)                         | 全 slash command の実体                                                                                  |
 | [rules/](rules/)                               | 全 rule の実体                                                                                           |
 | [packs/github-toolkit/](packs/github-toolkit/) | PR/Issue 作成・解決・レビュー一式（pack.json / settings.json / README.md）                               |
 | [packs/docs-toolkit/](packs/docs-toolkit/)     | 要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式（pack.json / settings.json / README.md）         |
 
-各 pack は `pack.json` に「含めるファイル一覧」を、`settings.json` に「追加で merge する設定」を持つメタ情報だけを保持する。実体は上記 `skills/` / `agents/` / `commands/` / `rules/` にフラット配置され、複数 pack で同じファイルを参照できる。
+各 pack は `pack.json` に「含めるファイル一覧」を、`settings.json` に「追加で merge する設定」を持つメタ情報だけを保持する。実体は上記 `skills/` / `agents/` / `rules/` にフラット配置され、複数 pack で同じファイルを参照できる。
 
 ## settings.json のセットアップ
 
@@ -27,15 +26,15 @@ Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 ln -s ~/dotclaude/settings.json ~/.claude/settings.json
 ```
 
-## 個別の skill / agent / command をホームディレクトリに常駐させる
+## 個別の skill / agent をホームディレクトリに常駐させる
 
-特定の skill（あるいは agent / command）をどのリポジトリでも使えるようにしたい場合は、`~/.claude/skills/` 配下にシンボリックリンクを貼る。
+特定の skill（あるいは agent）をどのリポジトリでも使えるようにしたい場合は、`~/.claude/skills/` 配下にシンボリックリンクを貼る。
 
 ```bash
 ln -s ~/dotclaude/skills/empirical-prompt-tuning ~/.claude/skills/empirical-prompt-tuning
 ```
 
-agent / command も同様に `~/.claude/agents/` / `~/.claude/commands/` にリンクする。pack 単位ではなく単体で配りたいケース向け。
+agent も同様に `~/.claude/agents/` にリンクする。pack 単位ではなく単体で配りたいケース向け。
 
 ## pack のインストール
 
