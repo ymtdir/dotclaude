@@ -1,19 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh:*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
       "Skill(create-issue)",
       "Skill(resolve-issue)",
       "Skill(create-pr)",
       "Skill(review-pr)",
       "Skill(init-issues)"
     ],
-    "ask": ["Bash(git push:*)"]
-  },
-  "sandbox": {
-    "network": {
-      "allowedDomains": ["github.com"]
-    }
+    "deny": ["Read(./.env)", "Read(./.env.*)"],
+    "ask": ["Bash(git push:*)", "Bash(git revert:*)"]
   },
   "enabledPlugins": {
     "code-review@claude-plugins-official": true
@@ -25,14 +25,5 @@
         "url": "https://github.com/anthropics/claude-plugins-official.git"
       }
     }
-  },
-  "skills": {
-    "allowed": [
-      "create-issue",
-      "resolve-issue",
-      "create-pr",
-      "review-pr",
-      "init-issues"
-    ]
   }
 }

@@ -3,34 +3,33 @@
 Claude Code 用の設定とパッケージ群を管理するリポジトリ。
 
 - **settings.json** はホーム（`~/.claude/settings.json`）にシンボリックリンクで常駐（全プロジェクト共通の設定）
-- **.claude/settings.template.json** は各プロジェクトの `.claude/settings.json` に配置するためのテンプレート（プロジェクト固有の設定）
 - **skills / agents / rules** はリポジトリ直下にフラット配置し、**pack** でグループ定義して `install.sh` で必要なリポジトリにだけ配布
+- 各 pack の `settings.json`（permissions / hooks など）は `install.sh` がプロジェクトの `.claude/settings.json` に deep-merge する
 
 ## ディレクトリ構成
 
-| パス                                                             | 役割                                                                                                                           |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [settings.json](settings.json)                                   | **ユーザー設定**: 全プロジェクト共通（hooks, sandbox, language）。`~/.claude/settings.json` にシンボリックリンク               |
-| [.claude/settings.template.json](.claude/settings.template.json) | **プロジェクト設定テンプレート**: 各プロジェクトの `.claude/settings.json` に配置する雛形（permissions, ask, format フック等） |
-| [install.sh](install.sh)                                         | リモート実行用インストーラ（`list` / `add` / `remove`）                                                                        |
-| [registry.json](registry.json)                                   | 利用可能な pack の一覧                                                                                                         |
-| [skills/](skills/)                                               | 全 skill の実体                                                                                                                |
-| [agents/](agents/)                                               | 全 agent の実体                                                                                                                |
-| [rules/](rules/)                                                 | 全 rule の実体                                                                                                                 |
-| [packs/github-toolkit/](packs/github-toolkit/)                   | PR/Issue 作成・解決・レビュー一式（pack.json / settings.json / README.md）                                                     |
-| [packs/docs-toolkit/](packs/docs-toolkit/)                       | 要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式（pack.json / settings.json / README.md）                               |
+| パス                                           | 役割                                                                                                             |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [settings.json](settings.json)                 | **ユーザー設定**: 全プロジェクト共通（hooks, sandbox, language）。`~/.claude/settings.json` にシンボリックリンク |
+| [install.sh](install.sh)                       | リモート実行用インストーラ（`list` / `add` / `remove`）                                                          |
+| [registry.json](registry.json)                 | 利用可能な pack の一覧                                                                                           |
+| [skills/](skills/)                             | 全 skill の実体                                                                                                  |
+| [agents/](agents/)                             | 全 agent の実体                                                                                                  |
+| [rules/](rules/)                               | 全 rule の実体                                                                                                   |
+| [packs/github-toolkit/](packs/github-toolkit/) | PR/Issue 作成・解決・レビュー一式（pack.json / settings.json / README.md）                                       |
+| [packs/docs-toolkit/](packs/docs-toolkit/)     | 要件→基本→詳細→開発ガイド作成とドキュメントレビュー一式（pack.json / settings.json / README.md）                 |
 
 各 pack は `pack.json` に「含めるファイル一覧」を、`settings.json` に「追加で merge する設定」を持つメタ情報だけを保持する。実体は上記 `skills/` / `agents/` / `rules/` にフラット配置され、複数 pack で同じファイルを参照できる。
 
 ## ユーザー設定 vs プロジェクト設定
 
-|              | ユーザー設定                             | プロジェクト設定（テンプレート）                        |
-| ------------ | ---------------------------------------- | ------------------------------------------------------- |
-| **ファイル** | `settings.json`                          | `.claude/settings.template.json`                        |
-| **配置先**   | `~/.claude/settings.json`                | 対象プロジェクトの `.claude/settings.json`              |
-| **スコープ** | 全プロジェクト共通                       | プロジェクトごとにカスタマイズ                          |
-| **含む内容** | 環境固有（言語、通知音、サンドボックス） | プロジェクト固有（permissions, ask ルール, hooks など） |
-| **配布方法** | シンボリックリンク（一度だけ）           | コピーして各プロジェクトで使う                          |
+|              | ユーザー設定                             | プロジェクト設定                                 |
+| ------------ | ---------------------------------------- | ------------------------------------------------ |
+| **ファイル** | `settings.json`                          | `packs/<name>/settings.json`                     |
+| **配置先**   | `~/.claude/settings.json`                | 対象プロジェクトの `.claude/settings.json`       |
+| **スコープ** | 全プロジェクト共通                       | pack を入れたプロジェクトのみ                    |
+| **含む内容** | 環境固有（言語、通知音、サンドボックス） | pack 固有（permissions, ask ルール, hooks など） |
+| **配布方法** | シンボリックリンク（一度だけ）           | `install.sh add <pack>` で deep-merge            |
 
 両方の設定はマージされる（スカラーは優先度の高い方で上書き、配列は連結）。`deny` などの制限はユーザー設定に書くと全プロジェクトに効くが、プロジェクト側で外せない（連結のみ）ので注意。
 

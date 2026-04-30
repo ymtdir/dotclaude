@@ -8,15 +8,5 @@
       "Skill(development-guide)",
       "Skill(review-doc)"
     ]
-  },
-  "skills": {
-    "allowed": [
-      "setup-project",
-      "requirements-definition",
-      "basic-design",
-      "detailed-design",
-      "development-guide",
-      "review-doc"
-    ]
   }
 }
