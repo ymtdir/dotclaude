@@ -3,14 +3,14 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "allowLocalBinding": true,
     "network": {
       "allowedDomains": [
         "*.npmjs.org",
         "github.com",
         "*.github.com",
         "*.githubusercontent.com"
-      ],
-      "allowLocalBinding": true
+      ]
     },
     "excludedCommands": ["docker *"]
   },

@@ -1,6 +1,6 @@
 {
   "enabledPlugins": {
-    "skill-creator@claude-plugins-official": false
+    "skill-creator@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
