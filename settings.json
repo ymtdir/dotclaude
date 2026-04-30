@@ -64,11 +64,15 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
     "network": {
-      "allowedDomains": ["*.npmjs.org"],
+      "allowedDomains": [
+        "*.npmjs.org",
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
+      ],
       "allowLocalBinding": true
     },
-    "excludedCommands": ["git", "docker"]
+    "excludedCommands": ["docker *"]
   }
 }
