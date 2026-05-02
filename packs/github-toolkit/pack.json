@@ -9,6 +9,7 @@
     "skills/resolve-issue/",
     "skills/init-issues/",
     "rules/label-definitions.md",
-    "rules/commit-conventions.md"
+    "rules/commit-conventions.md",
+    "rules/gh-usage.md"
   ]
 }

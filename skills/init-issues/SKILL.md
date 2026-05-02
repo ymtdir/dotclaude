@@ -7,6 +7,8 @@ description: プロジェクトドキュメント（要件定義・基本/詳細
 
 プロジェクトの開発を開始するための基本的な Issue セットを作成するスキルです。
 
+`gh` コマンドの実行は `../../rules/gh-usage.md` の規則に従い、必ず `env -u GITHUB_TOKEN` を前置すること。
+
 ## 前提条件
 
 - 以下の 4 ドキュメントが存在すること:
@@ -53,7 +55,7 @@ description: プロジェクトドキュメント（要件定義・基本/詳細
 
 ```bash
 # 1 本ずつ順番に作成し、URL 末尾から番号を抽出して次の Issue 本文の `前提: #N` に反映する
-URL=$(gh issue create --title "..." --label "..." --body "...")
+URL=$(env -u GITHUB_TOKEN gh issue create --title "..." --label "..." --body "...")
 N=$(echo "$URL" | grep -oE '[0-9]+$')
 # 次の Issue 本文の `前提: #N` にこの N を差し込んでから次を作成
 ```

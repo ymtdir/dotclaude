@@ -14,6 +14,7 @@ GitHub の PR / Issue 周りを Claude Code 上で完結させるためのツー
 | agent | `pr-reviewer`           | PR レビューの専門エージェント                            |
 | rule  | `label-definitions.md`  | 標準 5 ラベル定義                                        |
 | rule  | `commit-conventions.md` | コミット規約                                             |
+| rule  | `gh-usage.md`           | `gh` コマンド実行時の `env -u GITHUB_TOKEN` 前置規則     |
 
 ## インストール
 
