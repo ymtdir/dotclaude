@@ -13,12 +13,12 @@ PRのラベルに応じて専門スペシャリストの観点を選択し、領
 
 | スペシャリスト | ファイル                        | 概要                                         |
 | -------------- | ------------------------------- | -------------------------------------------- |
-| アーキテクチャ | `./specialists/architecture.md` | 設計パターン・モジュール構造・依存関係を評価 |
-| セキュリティ   | `./specialists/security.md`     | 脆弱性・認証認可・機密情報露出を検証         |
-| UI/UX          | `./specialists/ui-ux.md`        | 一貫性・アクセシビリティ・ユーザー体験を評価 |
-| コード品質     | `./specialists/code-quality.md` | 可読性・命名・DRY・複雑度を評価              |
-| パフォーマンス | `./specialists/performance.md`  | 処理効率・リソース使用量・応答速度を評価     |
-| テスト         | `./specialists/testing.md`      | テストの網羅性・品質・信頼性を評価           |
+| アーキテクチャ | `./references/architecture.md` | 設計パターン・モジュール構造・依存関係を評価 |
+| セキュリティ   | `./references/security.md`     | 脆弱性・認証認可・機密情報露出を検証         |
+| UI/UX          | `./references/ui-ux.md`        | 一貫性・アクセシビリティ・ユーザー体験を評価 |
+| コード品質     | `./references/code-quality.md` | 可読性・命名・DRY・複雑度を評価              |
+| パフォーマンス | `./references/performance.md`  | 処理効率・リソース使用量・応答速度を評価     |
+| テスト         | `./references/testing.md`      | テストの網羅性・品質・信頼性を評価           |
 
 ## ラベルとスペシャリストの対応
 
