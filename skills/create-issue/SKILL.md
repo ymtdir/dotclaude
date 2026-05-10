@@ -38,11 +38,11 @@ git log -1 --oneline
 
 選択されたラベルに対応するテンプレートを読み込み、情報を埋め込みます。ステップ2で取得した `branch` / `latest commit` は、テンプレ末尾の `## コンテキスト` 節にそのまま転記する。
 
-- **bug** → `assets/templates/bug.md`
-- **enhancement** → `assets/templates/enhancement.md`
-- **refactor** → `assets/templates/refactor.md`
-- **ui/ux** → `assets/templates/ui-ux.md`
-- **documentation** → `assets/templates/documentation.md`
+- **bug** → `assets/bug-template.md`
+- **enhancement** → `assets/enhancement-template.md`
+- **refactor** → `assets/refactor-template.md`
+- **ui/ux** → `assets/ui-ux-template.md`
+- **documentation** → `assets/documentation-template.md`
 
 プレースホルダ（`[...]` で囲われた箇所）は取得値や具体的な内容で置換する。該当情報が無い欄は `N/A` と記す（欄ごと削除しない）。
 

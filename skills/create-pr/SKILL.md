@@ -48,11 +48,11 @@ git diff --name-only origin/main...HEAD
 
 判定された種類に応じてテンプレートを選択し、プレースホルダ（`[...]`）を取得値や具体的内容で置換する:
 
-- **bug** → `./assets/templates/bug.md`
-- **enhancement** → `./assets/templates/enhancement.md`
-- **refactor** → `./assets/templates/refactor.md`
-- **ui/ux** → `./assets/templates/ui-ux.md`
-- **documentation** → `./assets/templates/documentation.md`
+- **bug** → `./assets/bug-template.md`
+- **enhancement** → `./assets/enhancement-template.md`
+- **refactor** → `./assets/refactor-template.md`
+- **ui/ux** → `./assets/ui-ux-template.md`
+- **documentation** → `./assets/documentation-template.md`
 
 Issue 連携がない場合は本文の `## 関連Issue` 節内容を `なし` に置換し、`Closes #[Issue番号]` 行は削除する。
 
